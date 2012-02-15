@@ -1,4 +1,4 @@
-update=Mi 25 Jan 2012 15:16:09 CET
+update=Mi 25 Jan 2012 15:46:26 CET
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -74,13 +74,13 @@ LibName26=siliconi
 LibName27=opto
 LibName28=atmel
 LibName29=contrib
-LibName30=valves
-LibName31=tinkerforge
+LibName30=tinkerforge
+LibName31=valves
 [pcbnew]
 version=1
-PadDrlX=0
-PadDimH=394
-PadDimV=433
+PadDrlX=512
+PadDimH=1181
+PadDimV=1181
 BoardThickness=630
 TxtPcbV=800
 TxtPcbH=600
@@ -92,7 +92,7 @@ DrawLar=150
 EdgeLar=150
 TxtLar=120
 MSegLar=150
-LastNetListRead=ambient-light.net
+LastNetListRead=voltage.net
 [pcbnew/libraries]
 LibDir=kicad-libraries
 LibName1=sockets
