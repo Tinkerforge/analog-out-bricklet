@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_ambient_light import AnalogOut
+from tinkerforge.bricklet_analog_out import AnalogOut
 
 if __name__ == "__main__":
     ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
