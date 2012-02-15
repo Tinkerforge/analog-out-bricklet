@@ -11,14 +11,12 @@ from tinkerforge.bricklet_ambient_light import AnalogOut
 if __name__ == "__main__":
     ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
 
-    al = AnalogOut(UID) # Create device object
-    ipcon.add_device(al) # Add device to ip connection
+    ao = AnalogOut(UID) # Create device object
+    ipcon.add_device(ao) # Add device to ip connection
     # Don't use device before it is added to a connection
 
-    # Get current illuminance (unit is Lux/10)
-    illuminance = al.get_illuminance()/10.0
-
-    print('Illuminance: ' + str(illuminance) + ' Lux')
+    # Set output voltage to 3.3V
+    ao.set_voltage(3300)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
     ipcon.destroy()

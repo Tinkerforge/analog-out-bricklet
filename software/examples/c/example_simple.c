@@ -1,8 +1,7 @@
-
 #include <stdio.h>
 
 #include "ip_connection.h"
-#include "bricklet_ambient_light.h"
+#include "bricklet_analog_out.h"
 
 #define HOST "localhost"
 #define PORT 4223
@@ -17,24 +16,18 @@ int main() {
 	}
 
 	// Create device object
-	AnalogOut al;
-	ambient_light_create(&al, UID); 
+	AnalogOut ao;
+	analog_out_create(&ao, UID); 
 
 	// Add device to ip connection
-	if(ipcon_add_device(&ipcon, &al) < 0) {
+	if(ipcon_add_device(&ipcon, &ao) < 0) {
 		fprintf(stderr, "Could not connect to Brick\n");
 		exit(1);
 	}
 	// Don't use device before it is added to a connection
 
-	// Get current illuminance (unit is Lux/10)
-	uint16_t illuminance;
-	if(ambient_light_get_illuminance(&al, &illuminance) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
-		exit(1);
-	}
-
-	printf("Illuminance: %f Lux\n", illuminance/10.0);
+	// Set a voltage of 3.3V
+	analog_out_set_voltage(&ao, 3300);
 
 	printf("Press ctrl+c to close\n");
 	ipcon_join_thread(&ipcon); // Join mainloop of ip connection

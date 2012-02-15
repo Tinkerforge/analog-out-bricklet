@@ -12,17 +12,15 @@ public class ExampleSimple {
 		// Create connection to brickd
 		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
 
-		BrickletAnalogOut al = new BrickletAnalogOut(UID); // Create device object
+		BrickletAnalogOut ao = new BrickletAnalogOut(UID); // Create device object
 
 		// Add device to ip connection
-		ipcon.addDevice(al); // Can throw IPConnection.TimeoutException
+		ipcon.addDevice(ao); // Can throw IPConnection.TimeoutException
 		// Don't use device before it is added to a connection
 		
 
-		// Get current illuminance (unit is Lux/10)
-		int illuminance = al.getIlluminance(); // Can throw IPConnection.TimeoutException
-
-		System.out.println("Illuminance: " + illuminance/10.0 + " Lux");
+		// Set output voltage to 3.3V
+		ao.setVoltage(3300);
 		
 		System.out.println("Press ctrl+c to exit");
 		ipcon.joinThread();

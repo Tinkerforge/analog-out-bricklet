@@ -9,16 +9,13 @@ class Example
 	static void Main() 
 	{
 		IPConnection ipcon = new IPConnection(HOST, PORT); // Create connection to brickd
-		BrickletAnalogOut al = new BrickletAnalogOut(UID); // Create device object
-		ipcon.AddDevice(al); // Add device to ip connection
+		BrickletAnalogOut ao = new BrickletAnalogOut(UID); // Create device object
+		ipcon.AddDevice(ao); // Add device to ip connection
 		// Don't use device before it is added to a connection
 
 
-		// Get current illuminance (unit is Lux/10)
-		ushort illuminance;
-		al.GetIlluminance(out illuminance);
-
-		System.Console.WriteLine("Illuminance: " + illuminance/10.0 + " Lux");
+		// Set output voltage to 3.3V
+		ao.SetVoltage(3300);
 
 		System.Console.WriteLine("Press ctrl+c to exit");
 		ipcon.JoinThread();
