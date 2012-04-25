@@ -10,14 +10,13 @@ class Example
 	{
 		IPConnection ipcon = new IPConnection(HOST, PORT); // Create connection to brickd
 		BrickletAnalogOut ao = new BrickletAnalogOut(UID); // Create device object
-		ipcon.AddDevice(ao); // Add device to ip connection
+		ipcon.AddDevice(ao); // Add device to IP connection
 		// Don't use device before it is added to a connection
-
 
 		// Set output voltage to 3.3V
 		ao.SetVoltage(3300);
 
 		System.Console.WriteLine("Press ctrl+c to exit");
 		ipcon.JoinThread();
-    }
+	}
 }

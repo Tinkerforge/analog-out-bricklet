@@ -11,17 +11,15 @@ public class ExampleSimple {
 	public static void main(String args[]) throws Exception {
 		// Create connection to brickd
 		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
-
 		BrickletAnalogOut ao = new BrickletAnalogOut(UID); // Create device object
 
-		// Add device to ip connection
+		// Add device to IP connection
 		ipcon.addDevice(ao); // Can throw IPConnection.TimeoutException
 		// Don't use device before it is added to a connection
-		
 
 		// Set output voltage to 3.3V
 		ao.setVoltage(3300);
-		
+
 		System.out.println("Press ctrl+c to exit");
 		ipcon.joinThread();
 	}
