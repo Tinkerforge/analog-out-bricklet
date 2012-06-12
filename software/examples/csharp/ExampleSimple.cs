@@ -16,7 +16,8 @@ class Example
 		// Set output voltage to 3.3V
 		ao.SetVoltage(3300);
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }

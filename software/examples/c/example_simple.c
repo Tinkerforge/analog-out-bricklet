@@ -29,6 +29,7 @@ int main() {
 	// Set a voltage of 3.3V
 	analog_out_set_voltage(&ao, 3300);
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }

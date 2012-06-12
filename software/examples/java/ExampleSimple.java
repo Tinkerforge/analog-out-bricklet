@@ -20,7 +20,7 @@ public class ExampleSimple {
 		// Set output voltage to 3.3V
 		ao.setVoltage(3300);
 
-		System.out.println("Press ctrl+c to exit");
-		ipcon.joinThread();
+		System.console().readLine("Press key to exit\n");
+		ipcon.destroy();
 	}
 }
