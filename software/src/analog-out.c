@@ -1,5 +1,5 @@
 /* analog-out-bricklet
- * Copyright (C) 2010-2011 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2010-2012 Olaf Lüke <olaf@tinkerforge.com>
  *
  * analog-out.c: Implementation of Analog Out Bricklet messages
  *
@@ -20,13 +20,14 @@
  */
 
 #include "analog-out.h"
-#include <adc/adc.h>
 
 #include "bricklib/bricklet/bricklet_communication.h"
 #include "bricklib/utility/util_definitions.h"
 #include "bricklib/utility/init.h"
+#include "bricklib/drivers/adc/adc.h"
 
 #include "brickletlib/bricklet_debug.h"
+#include "brickletlib/bricklet_entry.h"
 
 #include "config.h"
 
@@ -48,24 +49,36 @@ void destructor(void) {
 	adc_channel_disable(BS->adc_channel);
 }
 
-void invocation(uint8_t com, uint8_t *data) {
-	switch(((StandardMessage*)data)->type) {
-		case TYPE_SET_VOLTAGE:
+void invocation(const ComType com, const uint8_t *data) {
+	switch(((StandardMessage*)data)->header.fid) {
+		case FID_SET_VOLTAGE: {
 			set_voltage(com, (SetVoltage*)data);
 			break;
-		case TYPE_GET_VOLTAGE:
+		}
+
+		case FID_GET_VOLTAGE: {
 			get_voltage(com, (GetVoltage*)data);
 			break;
-		case TYPE_SET_MODE:
+		}
+
+		case FID_SET_MODE: {
 			set_mode(com, (SetMode*)data);
 			break;
-		case TYPE_GET_MODE:
+		}
+
+		case FID_GET_MODE: {
 			get_mode(com, (GetMode*)data);
 			break;
+		}
+
+		default: {
+			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_NOT_SUPPORTED, com);
+			break;
+		}
 	}
 }
 
-void tick(uint8_t tick_type) {
+void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
 		BC->counter++;
 		BC->voltage_sum += ADC_TO_REF(BA->adc_channel_get_data(BS->adc_channel));
@@ -77,44 +90,47 @@ void tick(uint8_t tick_type) {
 	}
 }
 
-void set_voltage(uint8_t com, SetVoltage *data) {
+void set_voltage(const ComType com, const SetVoltage *data) {
 	BC->voltage = data->voltage;
 	BC->mode    = 0;
 	update();
 
 	logbli("set_voltage: %d\n\r", data->voltage);
+
+	BA->com_return_setter(com, data);
 }
 
-void get_voltage(uint8_t com, GetVoltage *data) {
+void get_voltage(const ComType com, const GetVoltage *data) {
 	GetVoltageReturn gvr;
-
-	gvr.stack_id   = data->stack_id;
-	gvr.type       = data->type;
-	gvr.length     = sizeof(GetVoltageReturn);
-	gvr.voltage    = BC->voltage;
+	gvr.header        = data->header;
+	gvr.header.length = sizeof(GetVoltageReturn);
+	gvr.voltage       = BC->voltage;
 
 	BA->send_blocking_with_timeout(&gvr, sizeof(GetVoltageReturn), com);
 	logbli("get_voltage: %d\n\r", gvr.voltage);
 }
 
-void set_mode(uint8_t com, SetMode *data) {
+void set_mode(const ComType com, const SetMode *data) {
 	if(data->mode > 3) {
+		BA->com_return_error(data, com, MESSAGE_ERROR_CODE_INVALID_PARAMETER, sizeof(MessageHeader));
 		return;
 	}
+
 	BC->mode    = data->mode;
 	BC->voltage = 0;
 	update();
 
 	logbli("set_mode: %d\n\r", data->mode);
+
+	BA->com_return_setter(com, data);
 }
 
-void get_mode(uint8_t com, GetMode *data) {
+void get_mode(const ComType com, const GetMode *data) {
 	GetModeReturn gmr;
 
-	gmr.stack_id   = data->stack_id;
-	gmr.type       = data->type;
-	gmr.length     = sizeof(GetModeReturn);
-	gmr.mode       = BC->mode;
+	gmr.header        = data->header;
+	gmr.header.length = sizeof(GetModeReturn);
+	gmr.mode          = BC->mode;
 
 	BA->send_blocking_with_timeout(&gmr, sizeof(GetModeReturn), com);
 
