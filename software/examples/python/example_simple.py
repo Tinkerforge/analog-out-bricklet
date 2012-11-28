@@ -9,11 +9,11 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_analog_out import AnalogOut
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
+    ipcon = IPConnection() # Create IP connection
+    ao = AnalogOut(UID, ipcon) # Create device object
 
-    ao = AnalogOut(UID) # Create device object
-    ipcon.add_device(ao) # Add device to IP connection
-    # Don't use device before it is added to a connection
+    ipcon.connect(HOST, PORT) # Connect to brickd
+    # Don't use device before ipcon is connected
 
     # Set output voltage to 3.3V
     ao.set_voltage(3300)
