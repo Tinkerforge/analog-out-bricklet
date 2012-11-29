@@ -19,4 +19,3 @@ if __name__ == "__main__":
     ao.set_voltage(3300)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
-    ipcon.destroy()
