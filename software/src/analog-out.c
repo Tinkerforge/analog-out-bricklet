@@ -91,6 +91,11 @@ void tick(const uint8_t tick_type) {
 }
 
 void set_voltage(const ComType com, const SetVoltage *data) {
+	if(data->voltage > ANALOG_MAX_VOLTAGE) {
+		BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
+		return;
+	}
+
 	BC->voltage = data->voltage;
 	BC->mode    = 0;
 	update();
@@ -112,7 +117,7 @@ void get_voltage(const ComType com, const GetVoltage *data) {
 
 void set_mode(const ComType com, const SetMode *data) {
 	if(data->mode > 3) {
-		BA->com_return_error(data, com, MESSAGE_ERROR_CODE_INVALID_PARAMETER, sizeof(MessageHeader));
+		BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
 		return;
 	}
 
