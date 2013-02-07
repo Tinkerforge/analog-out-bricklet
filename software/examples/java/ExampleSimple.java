@@ -19,5 +19,6 @@ public class ExampleSimple {
 		ao.setVoltage(3300);
 
 		System.console().readLine("Press key to exit\n");
+		ipcon.disconnect();
 	}
 }

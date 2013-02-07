@@ -21,3 +21,4 @@ ao.set_voltage 3300
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

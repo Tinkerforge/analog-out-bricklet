@@ -21,5 +21,6 @@ $ao->setVoltage(3300);
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));
+$ipcon->disconnect();
 
 ?>
