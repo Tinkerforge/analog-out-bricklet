@@ -32,6 +32,8 @@
 #include "config.h"
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
 	adc_channel_enable(BS->adc_channel);
 	BC->counter = 0;
 	BC->voltage_ref = ANALOG_MAX_VOLTAGE;
