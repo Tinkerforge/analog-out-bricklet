@@ -16,7 +16,7 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Set output voltage to 3.3V
 $ao->set_voltage(3300);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
