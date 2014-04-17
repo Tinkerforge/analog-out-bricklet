@@ -14,6 +14,6 @@ function octave_example_simple
     % Set output voltage to 3.3V
     ao.setVoltage(3300);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
