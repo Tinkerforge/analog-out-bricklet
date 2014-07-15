@@ -18,7 +18,7 @@ public class ExampleSimple {
 		// Set output voltage to 3.3V
 		ao.setVoltage(3300);
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();
 	}
 }
