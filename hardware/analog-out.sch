@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Wed 18 Jan 2012 12:06:25 CET
+EESchema Schematic File Version 2  date Mo 14 Jan 2013 11:31:20 CET
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -31,13 +31,13 @@ LIBS:contrib
 LIBS:tinkerforge
 LIBS:valves
 LIBS:analog-out-cache
-EELAYER 25  0
+EELAYER 27 0
 EELAYER END
-$Descr A4 11700 8267
+$Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Analog Out Bricklet"
-Date "17 jan 2012"
+Date "14 jan 2013"
 Rev "1.0"
 Comp "Tinkerforge GmbH"
 Comment1 "Licensed under CERN OHL v.1.1"
@@ -283,7 +283,7 @@ U 1 1 4C6050A5
 P 10700 6500
 F 0 "U3" H 10750 6550 60  0001 C CNN
 F 1 "DRILL" H 10700 6500 60  0000 C CNN
-F 2 "Drill" H 10700 6500 60  0001 C CNN
+F 2 "DRILL_NP" H 10700 6500 60  0001 C CNN
 	1    10700 6500
 	1    0    0    -1  
 $EndComp
@@ -293,7 +293,7 @@ U 1 1 4C6050A2
 P 10700 6700
 F 0 "U4" H 10750 6750 60  0001 C CNN
 F 1 "DRILL" H 10700 6700 60  0000 C CNN
-F 2 "Drill" H 10700 6700 60  0001 C CNN
+F 2 "DRILL_NP" H 10700 6700 60  0001 C CNN
 	1    10700 6700
 	1    0    0    -1  
 $EndComp
@@ -303,7 +303,7 @@ U 1 1 4C60509F
 P 11050 6700
 F 0 "U6" H 11100 6750 60  0001 C CNN
 F 1 "DRILL" H 11050 6700 60  0000 C CNN
-F 2 "Drill" H 11050 6700 60  0001 C CNN
+F 2 "DRILL_NP" H 11050 6700 60  0001 C CNN
 	1    11050 6700
 	1    0    0    -1  
 $EndComp
@@ -313,7 +313,7 @@ U 1 1 4C605099
 P 11050 6500
 F 0 "U5" H 11100 6550 60  0001 C CNN
 F 1 "DRILL" H 11050 6500 60  0000 C CNN
-F 2 "Drill" H 11050 6500 60  0001 C CNN
+F 2 "DRILL_NP" H 11050 6500 60  0001 C CNN
 	1    11050 6500
 	1    0    0    -1  
 $EndComp
