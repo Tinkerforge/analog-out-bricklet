@@ -7,13 +7,13 @@ uid="amb"(* Change to your UID *)
 
 (* Create IPConnection and device object *)
 ipcon=NETNew["Tinkerforge.IPConnection"]
-al=NETNew["Tinkerforge.BrickletAmbientLight",uid,ipcon]
+ao=NETNew["Tinkerforge.BrickletAnalogOut",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Get current illuminance (unit is Lux/10) *)
-Print["Illuminance: "<>ToString[N[Quantity[al@GetIlluminance[],"Lux/10"]]]]
+(* Set a voltage of 3.3V *)
+ao@SetVoltage[3300]
 
 (* Clean up *)
 ipcon@Disconnect[]
-ReleaseNETObject[al]
+ReleaseNETObject[ao]
 ReleaseNETObject[ipcon]
