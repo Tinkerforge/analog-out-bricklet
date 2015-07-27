@@ -14,7 +14,7 @@ int main() {
 
 	// Create device object
 	AnalogOut ao;
-	analog_out_create(&ao, UID, &ipcon); 
+	analog_out_create(&ao, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -23,7 +23,7 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set a voltage of 3.3V
+	// Set output voltage to 3.3V
 	analog_out_set_voltage(&ao, 3300);
 
 	printf("Press key to exit\n");
