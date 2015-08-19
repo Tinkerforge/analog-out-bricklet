@@ -1,11 +1,11 @@
-#!/usr/bin/perl  
+#!/usr/bin/perl
 
 use Tinkerforge::IPConnection;
 use Tinkerforge::BrickletAnalogOut;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'ikE'; # Change to your UID
+use constant UID => 'XYZ'; # Change to your UID
 
 my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
 my $ao = Tinkerforge::BrickletAnalogOut->new(&UID, $ipcon); # Create device object
@@ -19,4 +19,3 @@ $ao->set_voltage(3300);
 print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
-
