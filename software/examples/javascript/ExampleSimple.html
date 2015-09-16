@@ -34,14 +34,14 @@
                 var ao = new Tinkerforge.BrickletAnalogOut(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
-                        //Set output voltage to 3.3V
+                    function (connectReason) {
+                        // Set output voltage to 3.3V
                         ao.setVoltage(3300);
                     }
                 );
