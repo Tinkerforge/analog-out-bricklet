@@ -7,7 +7,7 @@ function matlab_example_simple()
     UID = 'XYZ'; % Change to your UID
 
     ipcon = IPConnection(); % Create IP connection
-    ao = BrickletAnalogOut(UID, ipcon); % Create device object
+    ao = handle(BrickletAnalogOut(UID, ipcon), 'CallbackProperties'); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
