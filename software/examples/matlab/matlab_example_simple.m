@@ -4,7 +4,7 @@ function matlab_example_simple()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'XYZ'; % Change to your UID
+    UID = 'XYZ'; % Change XYZ to the UID of your Analog Out Bricklet
 
     ipcon = IPConnection(); % Create IP connection
     ao = handle(BrickletAnalogOut(UID, ipcon), 'CallbackProperties'); % Create device object
